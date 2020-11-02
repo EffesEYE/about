@@ -154,12 +154,11 @@ Permit me to say there'll be no need to run SQL scripts to start or reset the da
 
 ## Feedback On The FSI Sandbox
 
-1. Naviagtion can be improved. Currently you have to naviagte back to the homepage to switch from one sandbox API to the other
+1.  Naviagtion can be improved. Currently you have to naviagte back to the homepage to switch from one sandbox API to the other
 2.  Navigating to the home page reloads the entire web page / APIs, even if that was your 100th view within that browing session. These create friction and somewhat unecessary waits/lags, even for me using the venerable MTN HynetFlex
 3. Very wide descrepancies between what is documented in some of the Sandbox APIs and what you can do. E.g I could not get anything under `Get Biller Payment Items` and `Get Billers ISW` in the Sterling bank APIs to work. There's always that feeling that you are probably doing something wrong and I kept poking around the docs and my code (burning tons of time in the process), until I decide the system must be broken or the features are not currently supported. This is not good for developer experience!
 4.  A glossary of terms and better feature API descriptions will really help reduce friction and confussion. I have no idea with `Get Biller Payment Items` can do for me in the EffesEYE platform, neither do I have a clue of what `Billers ISW` means.
-5.  The current level of documentation leaves so much room for a lot of trial/error and ambiguity. Terms and jargons are not defined. Contraints are also not quite clear. E.g I spent a lot of time wondering why my attempt to use the Areica's Talking API to send SMS was failing, only to realise that it had to do with the length of what I provided in the `from` field. Once I switched from `EffesEYE` to `FSI`, it worked. Perharps there's an undocumented lenght contraint somewhere in there.
+5.  The current level of documentation leaves so much room for a lot of trial/error and ambiguity. Terms and jargons are not defined. Contraints are also not quite clear. E.g 
+    -   I spent a lot of time wondering why my attempt to use the Areica's Talking API to send SMS was failing, only to realise that it had to do with the length of what I provided in the `from` field. Once I switched from `EffesEYE` to `FSI`, it worked. Perharps there's an undocumented lenght contraint somewhere in there.
+    -   Calling the NIBSS API with `57650987619` as BVN fails even though it is an 11 character digit like the `12345678901` example provided. What constraints exists here and where are they documented. 
 6. As an example, I want to humbly suggest looking at [https://effeseye-api-docs.netlify.app/](https://effeseye-api-docs.netlify.app/). While not complete (e.g naviagtion), is is super clear on what paths / endpoints exists, what HTTP status codes are returned under what circumstance, what data schema is needed for a request and what resposne is expected. I imagine a team can take this spec/documentation, split into frontend and backend teams and go to work simultaneiusly (will be helpful in an FSI hackathon) and quickly ship their MVP
-
-sender id reqs
-bvn reqs, 57650987619 fails
