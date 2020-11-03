@@ -27,7 +27,7 @@ I have structured this document following the sections describing how this entry
 
 ### Design
 
-Later portions of this document will do justice to the design of the EffesEYE platform
+See the `System Design & Architecture` section below in this guide
 
 ### Functional Completeness
 
@@ -99,24 +99,24 @@ The topic of code reviews is deep and nuanced, but I strongly believe it begins 
 
 ## Security Assessment Questions
 
-> How will you mitigate code injection vulnerability risks for this application
+### How will you mitigate code injection vulnerability risks for this application
 
 1. We adopted an API-design-first approach. Thus we created an API spec that defines the data schema for all operations at the HTTP level. Using our spec document in a middleware that intercepts all inbound (and outbound) HTTP traffic, we can scrutinze every single request hitting our backend and immediatly respond with a `4xx` if the request data does not match what is defined in the spec. This means the surface area of code/sql injection is very minimal if it exists. The spec uses contraints (including regular expressions) to deeply specify the shape and form of the data schema in the API!
 2. We adopted an ORM (Sequelize) which has inbuilt data sanitization checks. A major benefit for using ORMs is that they make use of prepared statements, which is a technique to escape input in order to prevent SQL injection vulnerabilities as much as possible
 
-> How will you prevent the risk of weak authentication and session management
+### How will you prevent the risk of weak authentication and session management
 
 1. We adopted token-based authentication with JSON Web Tokens. This means every protected endpoint is intercepted with a check that investigates the validity of the provided token, and only proceeds to call the handler of the requested endpoint if (and only if) the token is verified. Any attempt to interfere or alter the signature of the token automatically invalidates it
 2.  Tokens are generated with a platform-wide authentication secret which is stored safely as an environemnt variable. A refresh / change to this secret (e.g in the event of a breach), will invalidate all authentication tokens we already issued to out, forcing user to re-authenticate with the new secret
 3.  Tokens have a limited lifespan and expire after 30 minutes - reducing how much time an attack can occur
 3.  Session management is best handled with platforms like Redis - a super fast, secure, highly available and external in-memory system. Thus leveraging industry tested capabilities 
 
-> Sensitive Data Exposure is a major risk; how you mitigate the risk of sensitive data exposure for this application
+### Sensitive Data Exposure is a major risk; how you mitigate the risk of sensitive data exposure for this application
 
 1.  Sensitive data like passwords are not stored in raw text form. Their encrypted equivalents are what gets stored
 2.  At the time of this writing, we are yet to implement data encryption across communication boundaries in the EffesEYE platform, but we have it in [our roadmap](https://github.com/orgs/EffesEYE/projects/1). This means while users are constantly on our secure network protocal (HTTPS), a breach (which is unlikely but not impossible) could mean their data is open to interception and eavesdropping.
 
-> How do you prevent broken authentication vulnerabilities
+### How do you prevent broken authentication vulnerabilities
 
 1.  By validating every protected endpoint with a token that has a short lifetime (expiration). This MVP adopts 30 minutes token expiration for demonstration, but this could easily be 10 minutes and all client apps can re-negotiate authentication on their users behalf (or redirect to a login screen) when the need arises
 2.  By adopting and externalized token secret, allowing existing tokens to be invalidated in bulk, with a simple refresh of the secret
