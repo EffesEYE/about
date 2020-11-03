@@ -1,6 +1,7 @@
-# The EffesEYE (MVP) Patform - Charles Odili's Entry For The FSI.ng CTO Role 
+# My CTO Entry - The EffesEYE (MVP) Platform
 
-> WIP - I will remove this line to signal that I am done with updating this guide
+<img src="./artifacts/system-design.svg">
+<br /> <br />
 
 I have structured this document following the sections describing how this entry will be evaluated, as stipulated in the assessment document sent out. I also added a `FSI Sandbox Feedback` section where I provided (hopefully) valuable feedback to FSI. The completed outline of this document is as follows : 
 
@@ -27,7 +28,7 @@ I have structured this document following the sections describing how this entry
 
 ### Design
 
-See the `System Design & Architecture` section below in this guide
+> See the `System Design & Architecture` section below in this guide
 
 ### Functional Completeness
 
@@ -127,7 +128,7 @@ The topic of code reviews is deep and nuanced, but I strongly believe it begins 
 Permit me to say there'll be no need to run SQL scripts to initialize or reset the database. We adopted Sequelize as a data abstraction utility for the platform and have provided npm scripts that automatically (re)generate the developemt or test database, and seed them with data automatically. Explore any of the following two options
 
 1.  Use database import scripts
-    *   See [effeseye_odili_db.sql](https://github.com/EffesEYE/about/blob/main/effeseye_odili_db.sql) for the SQL scripts to regenerate the database with seed data
+    *   See [effeseye_odili_db.sql](https://github.com/EffesEYE/about/blob/main/artifacts/effeseye_odili_db.sql) for the SQL scripts to regenerate the database with seed data
 
 2.  Use automatic Sequelize database migration
     *  Using a terminal, clone the `backend-monolith` repo to your machine and `cd` into it
@@ -137,7 +138,8 @@ Permit me to say there'll be no need to run SQL scripts to initialize or reset t
 
 ## System Design & Architecture
 
-- TODO
+<img src="./artifacts/system-design.svg">
+<br /> <br />
 
 ## Technology & Tools
 
